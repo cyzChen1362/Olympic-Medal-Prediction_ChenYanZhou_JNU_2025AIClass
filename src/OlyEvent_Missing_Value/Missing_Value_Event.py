@@ -1,18 +1,30 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 # 读取Excel文件
 file_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\raw_data_processing\summerOly_programs.xlsx'
 df = pd.read_excel(file_path)
 
-# 只保留Code和后面的年份数据
+# 只保留Code和年份数据
 df_years = df.loc[:, [df.columns[2]] + list(df.columns[4:])]
 
-# 设置宽高一样（比如20x20）
-plt.figure(figsize=(20, 20))  # 宽和高相等即可
+# 统一将不是数字的值（无法转为float的）视为缺失值
+def is_number_or_nan(x):
+    try:
+        float(x)
+        return x
+    except:
+        return np.nan
 
-# 不加square=True
+# 对除第一列外的所有值进行清洗
+df_years.iloc[:, 1:] = df_years.iloc[:, 1:].applymap(is_number_or_nan)
+
+# 设置图像尺寸
+plt.figure(figsize=(20, 20))
+
+# 绘制缺失值热力图
 sns.heatmap(
     df_years.iloc[:, 1:].isnull(),
     cbar=True,
