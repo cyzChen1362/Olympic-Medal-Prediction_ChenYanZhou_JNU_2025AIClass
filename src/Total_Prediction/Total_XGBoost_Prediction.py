@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_absolute_error
 from sklearn.preprocessing import LabelEncoder
 import shap
 
@@ -65,8 +66,14 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
+mae = mean_absolute_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+mape = np.mean(np.abs((y_test - y_pred) / (y_test + 1e-8))) * 100  # + 1e-8防止分母为0出错
 print("测试集均方误差 MSE:", mse)
 print("测试集R2分数:", r2)
+print("测试集平均绝对误差 MAE:", mae)
+print("测试集均方根误差 RMSE:", rmse)
+print("测试集平均绝对百分比误差 MAPE: {:.2f}%".format(mape))
 
 # 8. 全部预测，并写入新表格
 df['Pred_Total'] = model.predict(X)   # 用全量特征生成对应预测
