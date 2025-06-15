@@ -124,13 +124,64 @@ plt.close()
 # %%
 
 # ========= 生成2028年预测表格并预测 =============
+#
+# # 1. 取2024年每个国家的最新一行
+# df_raw = pd.read_excel(file_path)
+# df_raw['Year'] = df_raw['Year'].astype(int)
+# df_2024 = df_raw[df_raw['Year'] == 2024].copy()
+#
+# # 2. 按要求生成2028年预测表格
+# df_2028 = df_2024.copy()
+# df_2028['Year'] = 2028
+# df_2028['Cnt'] = 34
+# df_2028['Host'] = 0
+# df_2028['NOC'] = df_2028['NOC'].astype(str).str.strip()
+# df_2028.loc[df_2028['NOC'] == 'United States', 'Host'] = 1
+#
+# # 3. 只保留训练集中见过的国家
+# valid_noc = set(le.classes_)
+# df_2028 = df_2028[df_2028['NOC'].isin(valid_noc)].copy()
+#
+# # 4. NOC列重新LabelEncoder（用已有le即可）
+# df_2028['NOC'] = le.transform(df_2028['NOC'])
+#
+# # 5. 仅保留预测需要的特征
+# X_2028 = df_2028[features]
+#
+# # 6. 预测
+# df_2028['Pred_Total'] = model.predict(X_2028)
+#
+# # 7. 删除Gold/Silver/Bronze列
+# for col in ['Total','Gold', 'Silver', 'Bronze']:
+#     if col in df_2028.columns:
+#         df_2028.drop(columns=col, inplace=True)
+#
+# # 8. 按预测结果排序并加Rank
+# df_2028 = df_2028.sort_values(by='Pred_Total', ascending=False).reset_index(drop=True)
+# df_2028['Rank'] = df_2028.index + 1
+#
+# # 9. NOC列还原为国家名
+# df_2028['NOC'] = le.inverse_transform(df_2028['NOC'])
+#
+# # 10. Pred_Total四舍五入取整
+# df_2028['Pred_Total'] = df_2028['Pred_Total'].round().astype(int)
+#
+# # 11. 保存
+# save_2028 = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_2028_XGBoost_Prediction.xlsx'
+# df_2028.to_excel(save_2028, index=False)
+# print(f"2028年预测结果已写入：{save_2028}")
 
 # 1. 取2024年每个国家的最新一行
 df_raw = pd.read_excel(file_path)
 df_raw['Year'] = df_raw['Year'].astype(int)
 df_2024 = df_raw[df_raw['Year'] == 2024].copy()
 
-# 2. 按要求生成2028年预测表格
+# 2. 用2024年金银铜重新计算ATP（注意：Cnt为2028年设定的34）
+if all(col in df_2024.columns for col in ['Gold', 'Silver', 'Bronze']):
+    atp_2028 = (df_2024['Gold'] * 5 + df_2024['Silver'] * 3 + df_2024['Bronze'] * 1) / 9
+    df_2024['ATP'] = atp_2028
+
+# 3. 按要求生成2028年预测表格
 df_2028 = df_2024.copy()
 df_2028['Year'] = 2028
 df_2028['Cnt'] = 34
@@ -138,35 +189,36 @@ df_2028['Host'] = 0
 df_2028['NOC'] = df_2028['NOC'].astype(str).str.strip()
 df_2028.loc[df_2028['NOC'] == 'United States', 'Host'] = 1
 
-# 3. 只保留训练集中见过的国家
+# 4. 只保留训练集中见过的国家
 valid_noc = set(le.classes_)
 df_2028 = df_2028[df_2028['NOC'].isin(valid_noc)].copy()
 
-# 4. NOC列重新LabelEncoder（用已有le即可）
+# 5. NOC列重新LabelEncoder（用已有le即可）
 df_2028['NOC'] = le.transform(df_2028['NOC'])
 
-# 5. 仅保留预测需要的特征
+# 6. 仅保留预测需要的特征
 X_2028 = df_2028[features]
 
-# 6. 预测
+# 7. 预测
 df_2028['Pred_Total'] = model.predict(X_2028)
 
-# 7. 删除Gold/Silver/Bronze列
-for col in ['Gold', 'Silver', 'Bronze']:
+# 8. 删除Total/Gold/Silver/Bronze列
+for col in ['Total', 'Gold', 'Silver', 'Bronze']:
     if col in df_2028.columns:
         df_2028.drop(columns=col, inplace=True)
 
-# 8. 按预测结果排序并加Rank
+# 9. 按预测结果排序并加Rank
 df_2028 = df_2028.sort_values(by='Pred_Total', ascending=False).reset_index(drop=True)
 df_2028['Rank'] = df_2028.index + 1
 
-# 9. NOC列还原为国家名
+# 10. NOC列还原为国家名
 df_2028['NOC'] = le.inverse_transform(df_2028['NOC'])
 
-# 10. Pred_Total四舍五入取整
+# 11. Pred_Total四舍五入取整
 df_2028['Pred_Total'] = df_2028['Pred_Total'].round().astype(int)
 
-# 11. 保存
+# 12. 保存
 save_2028 = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_2028_XGBoost_Prediction.xlsx'
 df_2028.to_excel(save_2028, index=False)
 print(f"2028年预测结果已写入：{save_2028}")
+
