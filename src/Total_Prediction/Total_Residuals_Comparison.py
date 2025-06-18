@@ -2,9 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # 1. 路径
-xgb_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_XGBoost_Prediction_Data_with_Pred.xlsx'
-rf_path  = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_RF_Prediction_Data_with_Pred.xlsx'
-bp_path  = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_BP_Prediction_Data_with_Pred.xlsx'
+xgb_path = r'..\Total_Prediction\Total_XGBoost_Prediction_Data_with_Pred.xlsx'
+rf_path  = r'..\Total_Prediction\Total_RF_Prediction_Data_with_Pred.xlsx'
+bp_path  = r'..\Total_Prediction\Total_BP_Prediction_Data_with_Pred.xlsx'
 
 # 2. 读取数据
 xgb_df = pd.read_excel(xgb_path)
@@ -37,5 +37,5 @@ plt.ylim(-200, 200)
 plt.grid(True, linestyle=':')
 plt.legend()
 plt.tight_layout()
-plt.savefig(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Residuals_Comparison.png', dpi=300)
+plt.savefig(r'..\Total_Prediction\Residuals_Comparison.png', dpi=300)
 plt.show()

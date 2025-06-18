@@ -4,7 +4,7 @@ import seaborn as sns
 import numpy as np
 
 # 读取Excel文件
-file_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\raw_data_processing\summerOly_programs.xlsx'
+file_path = r'../raw_data_processing/summerOly_programs.xlsx'
 df = pd.read_excel(file_path)
 
 # 只保留Code和年份数据
@@ -41,7 +41,7 @@ plt.ylabel('Event', fontsize=14)
 plt.tight_layout()
 
 # 保存图片
-save_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\OlyEvent_Missing_Value\missing_heatmap_square.png'
+save_path = r'..\OlyEvent_Missing_Value\missing_heatmap_square.png'
 plt.savefig(save_path, dpi=300)
 plt.close()
 

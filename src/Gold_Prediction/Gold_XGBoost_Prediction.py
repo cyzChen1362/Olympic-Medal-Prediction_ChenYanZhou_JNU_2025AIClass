@@ -11,7 +11,7 @@ import shap
 # =============== XGBoost部分 ==================
 
 # 1. 读取数据（筛选后）
-file_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Gold_Prediction\Gold_Prediction_Data.xlsx'
+file_path = r'..\Gold_Prediction\Gold_Prediction_Data.xlsx'
 df = pd.read_excel(file_path)
 
 features = [
@@ -62,7 +62,7 @@ print("测试集平均绝对百分比误差 MAPE: {:.2f}%".format(mape))
 df['Pred_Gold'] = model.predict(X)
 df['NOC'] = le.inverse_transform(df['NOC'])
 
-save_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Gold_Prediction\Gold_XGBoost_Prediction_Data_with_Pred.xlsx'
+save_path = r'..\Gold_Prediction\Gold_XGBoost_Prediction_Data_with_Pred.xlsx'
 df.to_excel(save_path, index=False)
 print(f"预测结果已写入：{save_path}")
 
@@ -86,13 +86,13 @@ shap_values = explainer(X_test)
 plt.figure()
 shap.summary_plot(shap_values, X_test, show=True)
 shap.summary_plot(shap_values, X_test, show=False)
-plt.savefig(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Gold_Prediction\shap_summary_plot_gold.png', bbox_inches='tight')
+plt.savefig(r'..\Gold_Prediction\shap_summary_plot_gold.png', bbox_inches='tight')
 plt.close()
 
 plt.figure()
 shap.plots.bar(shap_values, show=True)
 shap.plots.bar(shap_values, show=False)
-plt.savefig(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Gold_Prediction\shap_bar_plot_gold.png', bbox_inches='tight')
+plt.savefig(r'..\Gold_Prediction\shap_bar_plot_gold.png', bbox_inches='tight')
 plt.close()
 
 # ========= 生成2028年预测表格并预测 =============
@@ -125,6 +125,6 @@ df_2028['Rank'] = df_2028.index + 1
 df_2028['NOC'] = le.inverse_transform(df_2028['NOC'])
 df_2028['Pred_Gold'] = df_2028['Pred_Gold'].round().astype(int)
 
-save_2028 = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Gold_Prediction\Gold_2028_XGBoost_Prediction.xlsx'
+save_2028 = r'..\Gold_Prediction\Gold_2028_XGBoost_Prediction.xlsx'
 df_2028.to_excel(save_2028, index=False)
 print(f"2028年预测结果已写入：{save_2028}")

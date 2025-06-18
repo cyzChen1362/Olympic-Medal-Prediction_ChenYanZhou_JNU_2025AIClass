@@ -3,7 +3,7 @@ import ast
 import sys
 import importlib
 
-src_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src'
+src_path = r'..\src'
 all_imports = set()
 
 # 遍历所有 .py 文件

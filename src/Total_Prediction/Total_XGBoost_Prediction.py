@@ -13,7 +13,7 @@ import shap
 # =============== XGBoost部分 ==================
 
 # 1. 读取数据（筛选后）
-file_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_Prediction_Data.xlsx'
+file_path = r'..\Total_Prediction\Total_Prediction_Data.xlsx'
 df = pd.read_excel(file_path)
 
 features = [
@@ -24,7 +24,7 @@ features = [
 target = 'Total'
 
 # 1. 读取数据（筛选前）
-# file_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\ATP_processing\summerOly_medal_counts_ATP.xlsx'
+# file_path = r'..\ATP_processing\summerOly_medal_counts_ATP.xlsx'
 # df = pd.read_excel(file_path)
 #
 # features = [
@@ -79,7 +79,7 @@ print("测试集平均绝对百分比误差 MAPE: {:.2f}%".format(mape))
 df['Pred_Total'] = model.predict(X)   # 用全量特征生成对应预测
 df['NOC'] = le.inverse_transform(df['NOC'])
 
-save_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_XGBoost_Prediction_Data_with_Pred.xlsx'
+save_path = r'..\Total_Prediction\Total_XGBoost_Prediction_Data_with_Pred.xlsx'
 df.to_excel(save_path, index=False)
 print(f"预测结果已写入：{save_path}")
 
@@ -111,14 +111,14 @@ shap.summary_plot(shap_values, X_test, show=True)
 
 # 4. 保存summary plot为图片
 shap.summary_plot(shap_values, X_test, show=False)
-plt.savefig(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\shap_summary_plot.png', bbox_inches='tight')
+plt.savefig(r'..\Total_Prediction\shap_summary_plot.png', bbox_inches='tight')
 plt.close()
 
 # 5. SHAP条形图（平均绝对值）
 plt.figure()
 shap.plots.bar(shap_values, show=True)
 shap.plots.bar(shap_values, show=False)
-plt.savefig(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\shap_bar_plot.png', bbox_inches='tight')
+plt.savefig(r'..\Total_Prediction\shap_bar_plot.png', bbox_inches='tight')
 plt.close()
 
 # %%
@@ -172,7 +172,7 @@ df_2028['NOC'] = le.inverse_transform(df_2028['NOC'])
 df_2028['Pred_Total'] = df_2028['Pred_Total'].round().astype(int)
 
 # 12. 保存
-save_2028 = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_2028_XGBoost_Prediction.xlsx'
+save_2028 = r'..\Total_Prediction\Total_2028_XGBoost_Prediction.xlsx'
 df_2028.to_excel(save_2028, index=False)
 print(f"2028年预测结果已写入：{save_2028}")
 

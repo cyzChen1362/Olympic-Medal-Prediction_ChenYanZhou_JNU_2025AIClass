@@ -22,9 +22,9 @@ def load_pred(file_path):
     return df['Total'].values, df['Pred_Total'].values
 
 # --- 文件路径 ---
-xgb_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_XGBoost_Prediction_Data_with_Pred.xlsx'
-rf_path  = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_RF_Prediction_Data_with_Pred.xlsx'
-bp_path  = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_BP_Prediction_Data_with_Pred.xlsx'
+xgb_path = r'..\Total_Prediction\Total_XGBoost_Prediction_Data_with_Pred.xlsx'
+rf_path  = r'..\Total_Prediction\Total_RF_Prediction_Data_with_Pred.xlsx'
+bp_path  = r'..\Total_Prediction\Total_BP_Prediction_Data_with_Pred.xlsx'
 
 # --- 读入全数据 ---
 true_xgb, pred_xgb = load_pred(xgb_path)
@@ -58,5 +58,5 @@ plt.title('Sample-wise 95% CI Width Comparison (XGBoost vs RF vs BP)')
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.savefig(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\CI_Width_Comparison_AllData.png', dpi=300)
+plt.savefig(r'..\Total_Prediction\CI_Width_Comparison_AllData.png', dpi=300)
 plt.show()

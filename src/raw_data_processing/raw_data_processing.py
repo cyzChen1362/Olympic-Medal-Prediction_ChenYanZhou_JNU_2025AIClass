@@ -1,8 +1,8 @@
 import pandas as pd
 
 # 路径
-medal_counts_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\raw_data_processing\summerOly_medal_counts.xlsx'
-programs_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\raw_data_processing\summerOly_programs.xlsx'
+medal_counts_path = r'..\raw_data_processing\summerOly_medal_counts.xlsx'
+programs_path = r'..\raw_data_processing\summerOly_programs.xlsx'
 df_medal = pd.read_excel(medal_counts_path)
 df_prog = pd.read_excel(programs_path)
 
@@ -94,7 +94,7 @@ target_columns = [
     'Total sports', 'Total disciplines', 'Total events'
 ] + code_cols
 df_try_atp_new = df_try_atp_new[target_columns]
-df_try_atp_new.to_excel(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\raw_data_processing\summerOly_medal_counts_Try_ATP.xlsx', index=False)
+df_try_atp_new.to_excel(r'..\raw_data_processing\summerOly_medal_counts_Try_ATP.xlsx', index=False)
 
 # 生成 SpearmanData
 spearman_columns = [
@@ -105,4 +105,4 @@ df_spearman_new = df_try_atp_new[spearman_columns]
 # 去除重复列
 df_spearman_new = df_spearman_new.loc[:, ~df_spearman_new.columns.duplicated()]
 
-df_spearman_new.to_excel(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\raw_data_processing\summerOly_medal_counts_SpearmanData.xlsx', index=False)
+df_spearman_new.to_excel(r'..\raw_data_processing\summerOly_medal_counts_SpearmanData.xlsx', index=False)

@@ -1,7 +1,7 @@
 import pandas as pd
 
 # 读取原始Excel文件
-file_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\raw_data_processing\summerOly_medal_counts_Try_ATP.xlsx'
+file_path = r'..\raw_data_processing\summerOly_medal_counts_Try_ATP.xlsx'
 df = pd.read_excel(file_path)
 
 # 去除NOC列前后空格
@@ -34,4 +34,4 @@ df.insert(year_idx + 1, 'ATP', atp)
 df = df.sort_values(['Year', 'Rank']).reset_index(drop=True)
 
 # 保存到新文件：
-df.to_excel(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\ATP_processing\summerOly_medal_counts_ATP.xlsx', index=False)
+df.to_excel(r'..\ATP_processing\summerOly_medal_counts_ATP.xlsx', index=False)

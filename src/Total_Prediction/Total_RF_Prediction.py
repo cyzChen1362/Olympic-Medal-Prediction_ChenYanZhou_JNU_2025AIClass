@@ -12,7 +12,7 @@ from sklearn.preprocessing import LabelEncoder
 # ================== RF部分 ====================
 
 # 1. 读取数据
-file_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_Prediction_Data.xlsx'
+file_path = r'..\Total_Prediction\Total_Prediction_Data.xlsx'
 df = pd.read_excel(file_path)
 
 features = [
@@ -60,7 +60,7 @@ print("测试集平均绝对百分比误差 MAPE: {:.2f}%".format(mape))
 
 # 8. 全部预测，并写入新表格
 df['Pred_Total'] = model.predict(X)
-save_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_RF_Prediction_Data_with_Pred.xlsx'
+save_path = r'..\Total_Prediction\Total_RF_Prediction_Data_with_Pred.xlsx'
 df.to_excel(save_path, index=False)
 print(f"预测结果已写入：{save_path}")
 

@@ -10,6 +10,6 @@ def print_tree(start_path, indent=""):
             print_tree(path, indent + extension)
 
 # 修改为你自己的文件夹路径
-folder_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src'
+folder_path = r'..\src'
 print(folder_path)
 print_tree(folder_path)

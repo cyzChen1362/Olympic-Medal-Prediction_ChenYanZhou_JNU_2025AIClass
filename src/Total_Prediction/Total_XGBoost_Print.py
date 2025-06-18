@@ -9,7 +9,7 @@ from scipy.ndimage import uniform_filter1d
 # ================= 数据处理 ===================
 
 # 1. 读取数据
-file_path = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_XGBoost_Prediction_Data_with_Pred.xlsx'
+file_path = r'..\Total_Prediction\Total_XGBoost_Prediction_Data_with_Pred.xlsx'
 df = pd.read_excel(file_path)
 true_values = df['Total'].values
 predicted_values = df['Pred_Total'].values
@@ -42,7 +42,7 @@ plt.title('XGBoost Residual Plot')
 plt.ylim(-200, 200)
 plt.grid(True)
 plt.tight_layout()
-plt.savefig(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_XGBoost_Residual_Plot.png', dpi=300)
+plt.savefig(r'..\Total_Prediction\Total_XGBoost_Residual_Plot.png', dpi=300)
 plt.show()
 
 # %%
@@ -105,7 +105,7 @@ plt.title('XGBoost Prediction Results with Confidence Intervals')
 plt.grid(True)
 plt.legend(loc='best', frameon=False)
 plt.tight_layout()
-plt.savefig(r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_XGBoost_Confint_Plot.png', dpi=300)
+plt.savefig(r'..\Total_Prediction\Total_XGBoost_Confint_Plot.png', dpi=300)
 plt.show()
 
 # %%
@@ -130,7 +130,7 @@ plt.legend()
 plt.tight_layout()
 
 # 4. 保存图片
-save_fig = r'C:\Users\cyz13\PycharmProjects\AI_ClassProject\src\Total_Prediction\Total_XGBoost_True_vs_Pred_top300.png'
+save_fig = r'..\Total_Prediction\Total_XGBoost_True_vs_Pred_top300.png'
 plt.savefig(save_fig, dpi=300)
 plt.show()
 
