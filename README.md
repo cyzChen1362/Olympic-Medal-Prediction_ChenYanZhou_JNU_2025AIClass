@@ -4,6 +4,10 @@
 
 📌 本项目为暨南大学《人工智能》课程结课项目。
 
+📌 ps: 持续更新中！（虽然课程结束了但还是会时不时冒个泡填个坑）
+
+📌 pss: 持续更新内容可能包括：首次金牌预测；超级教练效应；从别的数据集提取出真正的ATP特征
+
 ## 📁 项目结构
 
 src/
@@ -14,7 +18,7 @@ src/
 
 ├── Spearman_processing/         # 特征相关性筛选
 
-├── ATP_processing/              # 计算ATP特征
+├── ATP_processing/              # 计算ATP特征g
 
 ├── Total_Prediction/            # 奖牌总数 Total 的预测分析
  
